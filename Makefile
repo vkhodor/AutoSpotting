@@ -116,3 +116,15 @@ help:                                                        ## Show this help
 	@printf "Rules:\n"
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 .PHONY: help
+
+tidy:
+	@echo "+ $@"
+	@set -e; export GOLANGFLAGS="-mod=vendor"; \
+	go mod tidy
+
+
+.PHONY: vendor
+vendor:
+	@echo "+ $@"
+	@go mod vendor
+
