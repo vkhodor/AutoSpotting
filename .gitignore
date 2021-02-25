@@ -8,3 +8,4 @@ handler.zip
 *.coverprofile
 .idea/
 Makefile.lambda
+vendor/
