@@ -3,7 +3,7 @@ DEPS := "wget git go docker golint zip"
 BINARY := AutoSpotting
 
 COVER_PROFILE := /tmp/coverage.out
-BUCKET_NAME ?= cloudprowess
+BUCKET_NAME ?= rtb-us-autospotting-lambda
 FLAVOR ?= custom
 LOCAL_PATH := build/s3/$(FLAVOR)
 LICENSE_FILES := LICENSE THIRDPARTY
@@ -65,7 +65,7 @@ archive: build                                               ## Create archive t
 .PHONY: archive
 
 upload: archive                                              ## Upload binary
-	aws s3 sync build/s3/ s3://$(BUCKET_NAME)/
+	aws s3 cp build/s3/custom/lambda.zip s3://$(BUCKET_NAME)/lamblda.zip
 .PHONY: upload
 
 vet-check:                                                   ## Verify vet compliance
